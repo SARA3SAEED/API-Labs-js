@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee API</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            border: solid 1px #ddd;
+            border-radius: 4px;
+            width: 50%;
+            padding: 10px;
+            margin-left: 300PX;
+            margin-top: 100PX;
+        }
+        button{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="convert()">lab2</button>
+    <div class="container"></div>
+    
+
+
+    <script>
+        async function convert(){
+            window.location.href = "./lab2.html";
+        }
+        async function random(){
+            let container = document.querySelector('.container');
+            let url1 = "https://coffee.alexflipnote.dev/random.json";
+            let response = await fetch(url1);
+            let data = await response.json();
+            let img = document.createElement('img');
+                    img.src = data.file;
+                    img.style.width = '100%';
+                    img.style.height = '300px';
+                    img.style.borderRadius = '5px';
+            container.appendChild(img);
+        }
+        random();
+    </script>
+</body>
+</html>

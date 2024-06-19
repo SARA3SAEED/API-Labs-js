@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        
+        .div1{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .div2{
+            padding: 2px;
+            width: 30%;
+            height: 200px;
+        }
+        img{
+            width: 90%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="convert()">lab4</button>
+
+    
+    <div class="div1"></div>
+
+    <script>
+          async function convert(){
+            window.location.href = "./lab4.html";
+        }
+
+        let div1 = document.getElementsByClassName("div1")[0];
+        const resCodes = [
+        100, 101, 102, 103, 200, 201, 202, 203, 204, 206, 207, 208, 214, 226, 300,
+        301, 302, 303, 304, 305, 307, 308, 400, 401, 402, 403, 404, 405, 406, 407,
+        408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 420, 421, 422, 423,
+        424, 425, 426, 428, 429, 431, 444, 450, 451, 497, 498, 499, 500, 501, 502,
+        503, 504, 506, 507, 508, 509, 510, 511, 521, 522, 523, 525, 530, 599,
+        ];
+        let url = 'https://http.cat/';
+
+        resCodes.forEach(code => {
+            let status = "status/";
+            let div = document.createElement("div");
+            div.className = "div2"
+            div.innerHTML = 
+            `<a href="${url}${status}${code}">
+             <img src="${url}${code}.jpg"> </a>`;
+            div1.appendChild(div);
+        }
+        )
+    
+
+    </script>
+</body>
+</html>

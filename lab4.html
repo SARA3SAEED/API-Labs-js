@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .div1{
+            margin: 10px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+       .div2{
+        margin: 10px;
+        width: 40%;
+
+       }
+       .div2 img{
+        margin: 10px;
+        width: 100px;
+        height: 100px;
+       }
+    </style>
+</head>
+<body>
+    <button onclick="convert()">lab5</button>
+    <div class="div1"></div>
+    <script>
+           async function convert(){
+            window.location.href = "./lab5.html";
+        }
+
+        async function init(){
+            let div1 = document.getElementsByClassName("div1")[0];
+            let url = 'https://fakestoreapi.com/products';
+            let response = await fetch(url);
+            let data = await response.json();
+            console.log(data);
+            for(let i = 0; i < data.length; i++){
+                let div = document.createElement("div");
+                div.className = "div2"
+                div.style.margin = "20px";
+
+                let h = document.createElement("h3");
+                let img = document.createElement("img");
+                let p = document.createElement("p");
+                let h2 = document.createElement("h2");
+                
+                h.innerHTML = data[i].title;
+                h.style.margin = "5px";
+
+                img.src = data[i].image;
+                img.style.margin = "5px";
+
+                p.innerHTML = data[i].description;
+                p.style.margin = "5px";
+
+                h2.innerHTML = data[i].price;
+                h2.style.margin = "5px";
+
+                div.appendChild(img);
+                div.appendChild(h);
+                div.appendChild(p);
+                div.appendChild(h2);
+                div1.appendChild(div);
+            }
+        }
+                init();
+    </script>
+</body>
+</html>

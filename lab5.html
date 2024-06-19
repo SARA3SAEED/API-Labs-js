@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api-5</title>
+</head>
+<body>
+    <button onclick="convert()">lab1</button>
+
+    <div>
+        <input type="text" id="name" placeholder="NAME">
+        <input type="text" id="link" placeholder="LINK">
+        <button onclick="init()">click</button>
+    </div>
+
+    <div id="result"></div>
+    
+
+    <script>
+           async function convert(){
+            window.location.href = "./index.html";
+        }
+
+        async function init() {
+            let name = document.getElementById('name').value;
+            let link = document.getElementById('link').value;
+            let url = 'https://665736849f970b3b36c864e7.mockapi.io/login1';
+            let response = await fetch(url, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                "name": name,
+                                                "link": link
+                                            })
+                                        });
+            let data = await response.json();
+
+            console.log(data);
+            let result = document.getElementById('result');
+            if (data.name && data.link) {
+            let div1 = document.createElement('div');
+            let img1 = document.createElement('img');
+            let p1 = document.createElement('p');
+            let btn = document.createElement('button');
+
+            img1.src = data.link;
+            p1.innerText = data.name;
+            btn.innerText = 'Delete';
+
+            div1.appendChild(img1);
+            div1.appendChild(p1);
+            div1.appendChild(btn);
+
+            result.appendChild(div1);
+
+            btn.addEventListener('click', () => {
+                div1.remove();
+            });
+        }
+        }
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API</title>
+    <style>
+       
+        
+        .div0{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+           
+        }
+        div{
+            margin: 10px;
+            width: 15%;
+        }
+        img{
+            width: 80%;
+            border-radius: 4px;
+        }
+      
+    </style>
+</head>
+<body>
+    <button onclick="convert()">lab3</button>
+
+    <div class="div0"></div>
+    
+    <script>
+          async function convert(){
+            window.location.href = "./lab3.html";
+        }
+
+async function init() {
+        let url = 'https://rickandmortyapi.com/api/'
+        let characters = 'character';
+        let div0 = document.getElementsByClassName('div0')[0];
+
+        let request = await fetch(`${url}${characters}`);
+        let data = await request.json();
+        console.log(data);
+
+        for (let i = 0; i < data.results.length; i++) {
+        let charactername = data.results[i].name;
+        console.log(charactername);
+        let characterimage = data.results[i].image;
+        console.log(characterimage);
+        let div1 = document.createElement('div');
+        let img2 = document.createElement('img');
+        img2.src = characterimage;
+        let h2 = document.createElement('h1');
+        h2.innerHTML = charactername;
+
+        div1.appendChild(img2);
+        div1.appendChild(h2);
+        div0.appendChild(div1);
+        }
+}
+
+init();
+
+    </script>
+</body>
+</html>
